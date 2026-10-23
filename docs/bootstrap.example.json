@@ -1,0 +1,144 @@
+{
+  "suppliers": [
+    {
+      "id": "yesconnect",
+      "name": "YESCONNECT",
+      "legalName": "Fornecedor de demonstração YESCONNECT",
+      "cnpj": "00.000.000/0000-00",
+      "email": "faturamento@example.com",
+      "contact": "Faturamento",
+      "phone": "",
+      "senders": "faturamento@example.com",
+      "portal": "",
+      "method": "E-mail",
+      "dueDay": 10,
+      "sendDay": 5,
+      "clients": "FUMEC",
+      "companies": "3CORP TECHNOLOGY",
+      "owner": "Operador demo",
+      "active": true
+    },
+    {
+      "id": "fornecedor-demo",
+      "name": "FORNECEDOR DEMO",
+      "legalName": "Fornecedor fictício para testes",
+      "cnpj": "00.000.000/0000-00",
+      "email": "fornecedor@example.com",
+      "contact": "Financeiro",
+      "phone": "",
+      "senders": "fornecedor@example.com",
+      "portal": "",
+      "method": "E-mail",
+      "dueDay": 25,
+      "sendDay": 20,
+      "clients": "Projeto exemplo",
+      "companies": "3CORP TECHNOLOGY",
+      "owner": "Operador demo",
+      "active": true
+    }
+  ],
+  "obligations": [
+    {
+      "id": "obl-001",
+      "supplierId": "yesconnect",
+      "client": "FUMEC",
+      "company": "3CORP TECHNOLOGY",
+      "companyCnpj": "00.000.000/0000-00",
+      "competence": "10/2026",
+      "dueDate": "2026-10-10",
+      "sendDate": "2026-10-05",
+      "amount": 298.8,
+      "status": "READY_FOR_FINANCE",
+      "documents": [
+        {
+          "id": "918332ee-962c-4af7-a631-12e1dc90d9b2",
+          "name": "Boleto_DEMONSTRACAO.txt",
+          "kind": "BOLETO",
+          "amount": 298.8,
+          "dueDate": "2026-10-10",
+          "companyCnpj": "00.000.000/0000-00"
+        },
+        {
+          "id": "071a16ef-14cb-4a40-be72-1f5adb5cf9fd",
+          "name": "NF_DEMONSTRACAO.txt",
+          "kind": "NF",
+          "amount": 298.8,
+          "dueDate": null,
+          "companyCnpj": "00.000.000/0000-00"
+        }
+      ],
+      "timeline": [
+        {
+          "id": "624cb914-e95b-4407-9a81-6f947ecb12ae",
+          "at": "2026-10-22T19:45:08.802Z",
+          "label": "Obrigação ficticia criada para demonstração",
+          "actor": "Sistema demo"
+        }
+      ]
+    },
+    {
+      "id": "obl-002",
+      "supplierId": "fornecedor-demo",
+      "client": "Projeto exemplo",
+      "company": "3CORP TECHNOLOGY",
+      "companyCnpj": "00.000.000/0000-00",
+      "competence": "10/2026",
+      "dueDate": "2026-10-25",
+      "sendDate": "2026-10-20",
+      "amount": 1250,
+      "status": "WAITING_DOCUMENTS",
+      "documents": [],
+      "timeline": [
+        {
+          "id": "fd7b5c9e-58b1-4cf9-a24c-f6769f64fed9",
+          "at": "2026-10-22T19:45:08.802Z",
+          "label": "Obrigação ficticia criada para demonstração",
+          "actor": "Sistema demo"
+        }
+      ]
+    },
+    {
+      "id": "obl-003",
+      "supplierId": "fornecedor-demo",
+      "client": "Projeto revisão",
+      "company": "3CORP TECHNOLOGY",
+      "companyCnpj": "00.000.000/0000-00",
+      "competence": "10/2026",
+      "dueDate": "2026-10-28",
+      "sendDate": "2026-10-22",
+      "amount": 750,
+      "status": "REVIEW_REQUIRED",
+      "documents": [
+        {
+          "id": "272759e5-ace9-4447-91eb-1281291471bd",
+          "name": "Boleto_DEMONSTRACAO.txt",
+          "kind": "BOLETO",
+          "amount": 750,
+          "dueDate": "2026-10-28",
+          "companyCnpj": "00.000.000/0000-00"
+        },
+        {
+          "id": "4a58b67d-0038-488f-957c-d93fa803160e",
+          "name": "NF_DEMONSTRACAO.txt",
+          "kind": "NF",
+          "amount": 760,
+          "dueDate": null,
+          "companyCnpj": "00.000.000/0000-00"
+        }
+      ],
+      "timeline": [
+        {
+          "id": "ff1b0808-7d96-4861-bb91-c6b55384b241",
+          "at": "2026-10-22T19:45:08.802Z",
+          "label": "Obrigação ficticia criada para demonstração",
+          "actor": "Sistema demo"
+        }
+      ]
+    }
+  ],
+  "dispatches": [],
+  "settings": {
+    "to": "fernanda.cossa@3corp.com.br; adriane.moraes@3corp.com.br",
+    "cc": "operadora@3corp.com.br"
+  }
+}
