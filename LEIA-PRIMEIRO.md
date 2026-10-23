@@ -27,3 +27,6 @@ Ao abrir, o navegador pede usuario e senha. Sem essas duas variaveis, o modo API
 IMPORTANTE: o contrato real da sua API nao foi fornecido nesta conversa.
 A ponte esta implementada, mas seu backend precisa atender o contrato incluido ou receber um adaptador.
 Nenhum e-mail real e enviado por este pacote. Sua API/automacao e responsavel por isso.
+
+## 4. Login (novo)
+Adicione tambem SESSION_SECRET (32+ caracteres aleatorios) nas Environment Variables. Sem API_BASE_URL e sem PORTAL_USER/PORTAL_PASSWORD o modo demonstracao continua aberto.

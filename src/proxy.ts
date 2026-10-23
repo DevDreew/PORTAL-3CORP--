@@ -1,10 +1,24 @@
-import {NextRequest,NextResponse} from 'next/server';
-import {timingSafeEqual} from 'node:crypto';
-function equal(a:string,b:string){const x=Buffer.from(a),y=Buffer.from(b);return x.length===y.length&&timingSafeEqual(x,y)}
-export function proxy(req:NextRequest){
- const user=process.env.PORTAL_USER,pass=process.env.PORTAL_PASSWORD;
- if(process.env.API_BASE_URL&&(!user||!pass))return new NextResponse('Configure PORTAL_USER e PORTAL_PASSWORD no Vercel antes de conectar dados reais.',{status:503});
- if(user&&pass){let valid=false;try{const raw=req.headers.get('authorization')||'';if(raw.startsWith('Basic ')){const decoded=Buffer.from(raw.slice(6),'base64').toString();const i=decoded.indexOf(':');valid=i>=0&&equal(decoded.slice(0,i),user)&&equal(decoded.slice(i+1),pass)}}catch{}if(!valid)return new NextResponse('Acesso restrito',{status:401,headers:{'WWW-Authenticate':'Basic realm="3CORP Finance Operations", charset="UTF-8"','Cache-Control':'no-store'}})}
- return NextResponse.next();
+import { NextRequest, NextResponse } from "next/server";
+import { COOKIE, authRequired, secret, verifyToken } from "@/lib/session";
+
+// Substitui o src/proxy.ts anterior (HTTP Basic). Modo demo (sem API_BASE_URL) segue aberto.
+export async function proxy(req: NextRequest) {
+  if (!authRequired()) {
+    return req.nextUrl.pathname === "/login" ? NextResponse.redirect(new URL("/", req.url)) : NextResponse.next();
+  }
+  const { pathname } = req.nextUrl;
+  const ok = await verifyToken(req.cookies.get(COOKIE)?.value, secret());
+
+  if (pathname === "/login") return ok ? NextResponse.redirect(new URL("/", req.url)) : NextResponse.next();
+  if (pathname === "/api/login" || pathname === "/api/logout") return NextResponse.next();
+  if (ok) return NextResponse.next();
+
+  if (pathname.startsWith("/api/")) return NextResponse.json({ error: "Não autenticado" }, { status: 401 });
+  const url = new URL("/login", req.url);
+  if (pathname !== "/") url.searchParams.set("next", pathname);
+  return NextResponse.redirect(url);
 }
-export const config={matcher:['/((?!_next/static|_next/image|favicon.ico).*)']};
+
+export const config = {
+  matcher: ["/((?!_next/static|_next/image|favicon.ico|.*\\.(?:png|jpg|svg|ico|webp)$).*)"],
+};

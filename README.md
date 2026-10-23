@@ -58,7 +58,7 @@ src/lib/model.ts: contratos TypeScript e validacoes de conferencia.
 src/lib/api.ts: cliente da ponte HTTP.
 src/lib/demo.ts: dados ficticios e documentos de demonstracao.
 src/app/api/bridge/[...path]/route.ts: ponte server-side para sua API.
-src/proxy.ts: protecao de acesso inicial.
+src/proxy.ts + src/app/login + src/app/api/login: login com sessao (cookie assinado, 8h). Exige SESSION_SECRET.
 docs/: contrato, exemplo de bootstrap e relatorio de testes.
 
 ## Testes executados
